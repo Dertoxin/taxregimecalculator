@@ -39,10 +39,37 @@ function Form1({ handleChangeone, inputone }) {
                 value={inputone.ctc.value}
                 placeholder="CTC"
                 sx={{ marginTop: 1, width: "50%" }}
-                error={(inputone.ctc.isRequired && !inputone.ctc.value) || (inputone.ctc.value !== "" && inputone.ctc.value < 0)}
+                error={
+                  (inputone.ctc.isRequired && !inputone.ctc.value) ||
+                  (inputone.ctc.value !== "" && inputone.ctc.value < 0)
+                }
                 helperText={
-                  (inputone.ctc.isRequired && inputone.ctc.value === "" && "This field is required") || 
-                  (inputone.ctc.value !== "" && inputone.ctc.value < 0 && "Value cannot be less than 0")
+                  (inputone.ctc.isRequired &&
+                    inputone.ctc.value === "" &&
+                    "This field is required") ||
+                  (inputone.ctc.value !== "" &&
+                    inputone.ctc.value < 0 &&
+                    "Value cannot be less than 0")
+                }
+                inputProps={{ min: 0 }}
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <Typography variant="body1" sx={{ color: "black" }}>
+                Enter your Basic component of the Amount
+              </Typography>
+              <TextField
+                type="number"
+                onChange={handleChangeone}
+                name="basic"
+                value={inputone.basic.value}
+                placeholder="Basic"
+                sx={{ marginTop: 1, width: "50%" }}
+                error={!inputone.basic.value}
+                helperText={
+                  (inputone.basic.value === "" && "This field is required") ||
+                  (inputone.basic.value < 0 && "Value cannot be less than 0")
                 }
                 inputProps={{ min: 0 }}
               />
@@ -98,7 +125,12 @@ function Form1({ handleChangeone, inputone }) {
                 value={inputone.specialAllowance.value}
                 placeholder="Special Allowance"
                 sx={{ marginTop: 1, width: "50%" }}
-                error={(inputone.specialAllowance.isRequired && !inputone.specialAllowance.value) || (inputone.specialAllowance.value !== "" && inputone.specialAllowance.value < 0)}
+                error={
+                  (inputone.specialAllowance.isRequired &&
+                    !inputone.specialAllowance.value) ||
+                  (inputone.specialAllowance.value !== "" &&
+                    inputone.specialAllowance.value < 0)
+                }
                 helperText={
                   (inputone.specialAllowance.value === "" &&
                     "This field is required") ||
@@ -150,6 +182,25 @@ function Form1({ handleChangeone, inputone }) {
                 inputProps={{ min: 0 }}
               />
             </Grid>
+
+            <Grid item xs={12}>
+              <Typography variant="body1" sx={{ color: "black" }}>
+                Enter the 'Bonus/Variable pay' received during the year{" "}
+              </Typography>
+              <TextField
+                type="number"
+                onChange={handleChangeone}
+                name="bonus"
+                value={inputone.bonus.value}
+                placeholder="Bonus"
+                sx={{ marginTop: 1, width: "50%" }}
+                error={!inputone.bonus.value}
+                helperText={
+                  !hasValue(inputone.bonus.value) && "This field is required"
+                }
+                inputProps={{ min: 0 }}
+              />
+            </Grid>
             <Grid item xs={12}>
               <Typography variant="body1" sx={{ color: "black" }}>
                 Enter the 'EPF' Component of your CTC contributed by yourself
@@ -168,9 +219,27 @@ function Form1({ handleChangeone, inputone }) {
                 }
                 inputProps={{ min: 0 }}
               />
+            </Grid>
 
-
-
+            <Grid item xs={12}>
+              <Typography variant="body1" sx={{ color: "black" }}>
+                Enter the 'Employer Provident Fund (EPF) ' Component of your CTC
+                contributed by your company/employer
+              </Typography>
+              <TextField
+                type="number"
+                onChange={handleChangeone}
+                name="epf"
+                value={inputone.epf.value}
+                placeholder="EPF"
+                sx={{ marginTop: 1, width: "50%" }}
+                error={!inputone.epf.value}
+                helperText={
+                  (inputone.epf.value === "" && "This field is required") ||
+                  (inputone.epf.value < 0 && "Value cannot be less than 0")
+                }
+                inputProps={{ min: 0 }}
+              />
             </Grid>
             <Grid item xs={12}>
               <Typography variant="body1" sx={{ color: "black" }}>
@@ -190,72 +259,6 @@ function Form1({ handleChangeone, inputone }) {
                 inputProps={{ min: 0 }}
               />
             </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" sx={{ color: "black" }}>
-                Enter the 'Employer Provident Fund (EPF)' Component of your CTC contributed by yourself
-              </Typography>
-              <TextField
-                type="number"
-                onChange={handleChangeone}
-                name="epf"
-                value={inputone.epfself.value}
-                placeholder="EPF"
-                sx={{ marginTop: 1, width: "50%" }}
-                error={!inputone.epfself.value}
-                helperText={
-                  (inputone.epfself.value === "" && "This field is required") ||
-                  (inputone.epfself.value < 0 && "Value cannot be less than 0")
-                }
-                inputProps={{ min: 0 }}
-              />
-
-
-              
-            </Grid>
-
-            <Grid item xs={12}>
-              <Typography variant="body1" sx={{ color: "black" }}>
-                Enter the 'Employer Provident Fund (EPF) ' Component of your CTC contributed by your company/employer
-              </Typography>
-              <TextField
-                type="number"
-                onChange={handleChangeone}
-                name="epf"
-                value={inputone.epfcompany.value}
-                placeholder="EPF"
-                sx={{ marginTop: 1, width: "50%" }}
-                error={!inputone.epfcompany.value}
-                helperText={
-                  (inputone.epfcompany.value === "" && "This field is required") ||
-                  (inputone.epfcompany.value < 0 && "Value cannot be less than 0")
-                }
-                inputProps={{ min: 0 }}
-              />
-
-
-              
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" sx={{ color: "black" }}>
-                Enter the 'Bonus/Variable pay' received during the year{" "}
-              </Typography>
-              <TextField
-                type="number"
-                onChange={handleChangeone}
-                name="bonus"
-                value={inputone.bonus.value}
-                placeholder="Bonus"
-                sx={{ marginTop: 1, width: "50%" }}
-                error={!inputone.bonus.value}
-                helperText={
-                  !hasValue(inputone.bonus.value) && "This field is required"
-                }
-                inputProps={{ min: 0 }}
-              />
-            </Grid>
-
-
-
 
             <Grid item xs={12}>
               <Typography variant="body1" sx={{ color: "black" }}>

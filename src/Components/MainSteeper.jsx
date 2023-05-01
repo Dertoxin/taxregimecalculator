@@ -13,20 +13,20 @@ import Taxregime from "./Taxregime";
 import Output from "./Output";
 import { useState,useEffect  } from "react";
 export default function VerticalLinearStepper() {
-  const [activeStep, setActiveStep] = React.useState(2);
+  const [activeStep, setActiveStep] = React.useState(1);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   
   const [taxregime, setTaxregime] = React.useState();
 
   const [inputone, setInputsone] = useState({
-    ctc: { value: "", isRequired: true },
-    basic: { value: "", isRequired: true },
-    hra: { value: "", isRequired: true },
+    ctc: { value: "", isRequired: false },
+    basic: { value: "", isRequired: false },
+    hra: { value: "", isRequired: false },
     specialAllowance: { value: "", isRequired: false },
     otherAllowance: { value: "", isRequired: false },
     otherComponent: { value: "", isRequired: false },
-    epfself: { value: "", isRequired: true },
-    epfcompany: { value: "", isRequired: true },
+    epfself: { value: "", isRequired: false },
+    epfcompany: { value: "", isRequired: false },
     bonus: { value: "", isRequired: false },
     shortTermCapitalGains: { value: "", isRequired: false },
     longTermCapitalGains: { value: "", isRequired: false },
@@ -44,7 +44,7 @@ export default function VerticalLinearStepper() {
     personalNpsContribution: { value: "", isRequired: false },
     isEmployerNpsContribution: { value: false, isRequired: false },
     employerNpsContribution: { value: "", isRequired: false },
-    healthInsuranceSelf: { value: "", isRequired: false },
+    healthInsuranceSelf: { value:"", isRequired: false },
     isHealthInsuranceParents: { value: false, isRequired: false },
     isHealthInsuranceParentsAbove60: { value: false, isRequired: false },
     healthInsuranceParentsContributionBelow60: { value: "", isRequired: false },
