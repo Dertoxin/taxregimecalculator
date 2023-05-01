@@ -13,7 +13,7 @@ import Taxregime from "./Taxregime";
 import Output from "./Output";
 import { useState,useEffect  } from "react";
 export default function VerticalLinearStepper() {
-  const [activeStep, setActiveStep] = React.useState(4);
+  const [activeStep, setActiveStep] = React.useState(2);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   
   const [taxregime, setTaxregime] = React.useState();
@@ -25,7 +25,8 @@ export default function VerticalLinearStepper() {
     specialAllowance: { value: "", isRequired: false },
     otherAllowance: { value: "", isRequired: false },
     otherComponent: { value: "", isRequired: false },
-    epf: { value: "", isRequired: true },
+    epfself: { value: "", isRequired: true },
+    epfcompany: { value: "", isRequired: true },
     bonus: { value: "", isRequired: false },
     shortTermCapitalGains: { value: "", isRequired: false },
     longTermCapitalGains: { value: "", isRequired: false },
@@ -33,8 +34,8 @@ export default function VerticalLinearStepper() {
 
   const [inputtwo, setInputsTwo] = useState({
     isRentedAccommodation: { value: false, isRequired: false },
-    totalHouseRentPaid: { value: "", isRequired: true },
-    isHomeLoan: { value:"" , isRequired: true },
+    totalHouseRentPaid: { value: "", isRequired: false },
+    isHomeLoan: { value:"" , isRequired: false },
     homeLoanPrincipal: { value: "", isRequired: false },
     homeLoanInterest: { value: "", isRequired: false },
     isHomeLoanAndRent: { value: false, isRequired: false },
@@ -43,7 +44,7 @@ export default function VerticalLinearStepper() {
     personalNpsContribution: { value: "", isRequired: false },
     isEmployerNpsContribution: { value: false, isRequired: false },
     employerNpsContribution: { value: "", isRequired: false },
-    healthInsuranceSelf: { value: "", isRequired: true },
+    healthInsuranceSelf: { value: "", isRequired: false },
     isHealthInsuranceParents: { value: false, isRequired: false },
     isHealthInsuranceParentsAbove60: { value: false, isRequired: false },
     healthInsuranceParentsContributionBelow60: { value: "", isRequired: false },

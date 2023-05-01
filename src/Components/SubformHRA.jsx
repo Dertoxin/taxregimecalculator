@@ -13,7 +13,7 @@ import {
 import { styled } from "@mui/system";
 
 const SubformHRA = ({ handleChangeTwo, inputtwo }) => {
-  const [hasHomeLoan, setHasHomeLoan] = useState(false);
+  const [hasHomeLoan, setHasHomeLoan] = useState(inputtwo.isHomeLoan);
 
   const handleHomeLoanChange = (event) => {
     setHasHomeLoan(event.target.value);

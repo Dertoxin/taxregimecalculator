@@ -152,7 +152,7 @@ function Form1({ handleChangeone, inputone }) {
             </Grid>
             <Grid item xs={12}>
               <Typography variant="body1" sx={{ color: "black" }}>
-                Enter the 'EPF' Component of your CTC
+                Enter the 'EPF' Component of your CTC contributed by yourself
               </Typography>
               <TextField
                 type="number"
@@ -168,6 +168,9 @@ function Form1({ handleChangeone, inputone }) {
                 }
                 inputProps={{ min: 0 }}
               />
+
+
+
             </Grid>
             <Grid item xs={12}>
               <Typography variant="body1" sx={{ color: "black" }}>
@@ -187,6 +190,73 @@ function Form1({ handleChangeone, inputone }) {
                 inputProps={{ min: 0 }}
               />
             </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body1" sx={{ color: "black" }}>
+                Enter the 'Employer Provident Fund (EPF)' Component of your CTC contributed by yourself
+              </Typography>
+              <TextField
+                type="number"
+                onChange={handleChangeone}
+                name="epf"
+                value={inputone.epfself.value}
+                placeholder="EPF"
+                sx={{ marginTop: 1, width: "50%" }}
+                error={!inputone.epfself.value}
+                helperText={
+                  (inputone.epfself.value === "" && "This field is required") ||
+                  (inputone.epfself.value < 0 && "Value cannot be less than 0")
+                }
+                inputProps={{ min: 0 }}
+              />
+
+
+              
+            </Grid>
+
+            <Grid item xs={12}>
+              <Typography variant="body1" sx={{ color: "black" }}>
+                Enter the 'Employer Provident Fund (EPF) ' Component of your CTC contributed by your company/employer
+              </Typography>
+              <TextField
+                type="number"
+                onChange={handleChangeone}
+                name="epf"
+                value={inputone.epfcompany.value}
+                placeholder="EPF"
+                sx={{ marginTop: 1, width: "50%" }}
+                error={!inputone.epfcompany.value}
+                helperText={
+                  (inputone.epfcompany.value === "" && "This field is required") ||
+                  (inputone.epfcompany.value < 0 && "Value cannot be less than 0")
+                }
+                inputProps={{ min: 0 }}
+              />
+
+
+              
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body1" sx={{ color: "black" }}>
+                Enter the 'Bonus/Variable pay' received during the year{" "}
+              </Typography>
+              <TextField
+                type="number"
+                onChange={handleChangeone}
+                name="bonus"
+                value={inputone.bonus.value}
+                placeholder="Bonus"
+                sx={{ marginTop: 1, width: "50%" }}
+                error={!inputone.bonus.value}
+                helperText={
+                  !hasValue(inputone.bonus.value) && "This field is required"
+                }
+                inputProps={{ min: 0 }}
+              />
+            </Grid>
+
+
+
+
             <Grid item xs={12}>
               <Typography variant="body1" sx={{ color: "black" }}>
                 Enter Short-term capital gains on market investments
