@@ -114,53 +114,8 @@ function Form1({ handleChangeone, inputone }) {
                 inputProps={{ min: 0 }}
               />
             </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" sx={{ color: "black" }}>
-                Enter the 'Special allowance' Component of your CTC
-              </Typography>
-              <TextField
-                type="number"
-                onChange={handleChangeone}
-                name="specialAllowance"
-                value={inputone.specialAllowance.value}
-                placeholder="Special Allowance"
-                sx={{ marginTop: 1, width: "50%" }}
-                error={
-                  (inputone.specialAllowance.isRequired &&
-                    !inputone.specialAllowance.value) ||
-                  (inputone.specialAllowance.value !== "" &&
-                    inputone.specialAllowance.value < 0)
-                }
-                helperText={
-                  (inputone.specialAllowance.value === "" &&
-                    "This field is required") ||
-                  (inputone.specialAllowance.value < 0 &&
-                    "Value cannot be less than 0")
-                }
-                inputProps={{ min: 0 }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body1" sx={{ color: "black" }}>
-                Enter the 'Other allowance' Component of your CTC
-              </Typography>
-              <TextField
-                type="number"
-                onChange={handleChangeone}
-                name="otherAllowance"
-                value={inputone.otherAllowance.value}
-                placeholder="Other Allowance"
-                sx={{ marginTop: 1, width: "50%" }}
-                error={!inputone.otherAllowance.value}
-                helperText={
-                  (inputone.otherAllowance.value === "" &&
-                    "This field is required") ||
-                  (inputone.otherAllowance.value < 0 &&
-                    "Value cannot be less than 0")
-                }
-                inputProps={{ min: 0 }}
-              />
-            </Grid>
+            
+            
             <Grid item xs={12}>
               <Typography variant="body1" sx={{ color: "black" }}>
                 Enter any other component of your CTC not specified above
