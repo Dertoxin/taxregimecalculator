@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 
-function Form1({ handleChangeone, inputone}) {
+function Form1({ handleChangeone, inputone }) {
   /*
 
   */
@@ -94,7 +94,7 @@ function Form1({ handleChangeone, inputone}) {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="body1" sx={{ color: "black" }}>
-            Enter the 'Special allowance' Component of your CTC
+              Enter the 'Special allowance' Component of your CTC
             </Typography>
             <TextField
               type="number"
@@ -105,12 +105,36 @@ function Form1({ handleChangeone, inputone}) {
               sx={{ marginTop: 1, width: "50%" }}
               error={!inputone.specialAllowance.value}
               helperText={
-                (inputone.specialAllowance.value === "" && "This field is required") ||
-                (inputone.specialAllowance  .value < 0 && "Value cannot be less than 0")
+                (inputone.specialAllowance.value === "" &&
+                  "This field is required") ||
+                (inputone.specialAllowance.value < 0 &&
+                  "Value cannot be less than 0")
               }
               inputProps={{ min: 0 }}
             />
           </Grid>
+          <Grid item xs={12}>
+            <Typography variant="body1" sx={{ color: "black" }}>
+              Enter the  Other allowances in your CTC
+            </Typography>
+            <TextField
+              type="number"
+              onChange={handleChangeone}
+              name="otherAllowance"
+              value={inputone.otherAllowance.value}
+              placeholder="Other Allowance"
+              sx={{ marginTop: 1, width: "50%" }}
+              error={!inputone.otherAllowance.value}
+              helperText={
+                (inputone.specialAllowance.value === "" &&
+                  "This field is required") ||
+                (inputone.specialAllowance.value < 0 &&
+                  "Value cannot be less than 0")
+              }
+              inputProps={{ min: 0 }}
+            />
+          </Grid>
+
           <Grid item xs={12}>
             <Typography variant="body1" sx={{ color: "black" }}>
               Enter any other component of your CTC not specified above
@@ -166,7 +190,8 @@ function Form1({ handleChangeone, inputone}) {
               sx={{ marginTop: 1, width: "50%" }}
               error={!inputone.epfcompany.value}
               helperText={
-                (inputone.epfcompany.value === "" && "This field is required") ||
+                (inputone.epfcompany.value === "" &&
+                  "This field is required") ||
                 (inputone.epfcompany.value < 0 && "Value cannot be less than 0")
               }
               inputProps={{ min: 0 }}
@@ -175,7 +200,8 @@ function Form1({ handleChangeone, inputone}) {
 
           <Grid item xs={12}>
             <Typography variant="body1" sx={{ color: "black" }}>
-            Enter income from other sources such as interest earned on bank or savings bank deposits
+              Enter income from other sources such as interest earned on bank or
+              savings bank deposits
             </Typography>
             <TextField
               type="number"
@@ -205,8 +231,8 @@ function Form1({ handleChangeone, inputone}) {
               sx={{ marginTop: 1, width: "50%" }}
               error={!inputone.bonus.value}
               helperText={
-              //  !hasValue(inputone.bonus.value) && 
-              "This field is required"
+                //  !hasValue(inputone.bonus.value) &&
+                "This field is required"
               }
               inputProps={{ min: 0 }}
             />
@@ -225,7 +251,7 @@ function Form1({ handleChangeone, inputone}) {
               sx={{ marginTop: 1, width: "50%" }}
               error={!inputone.shortTermCapitalGains.value}
               helperText={
-              //  !hasValue(inputone.shortTermCapitalGains.value) &&
+                //  !hasValue(inputone.shortTermCapitalGains.value) &&
                 "This field is required"
               }
               inputProps={{ min: 0 }}
@@ -244,7 +270,7 @@ function Form1({ handleChangeone, inputone}) {
               sx={{ marginTop: 1, width: "50%" }}
               error={!inputone.longTermCapitalGains.value}
               helperText={
-              //  !hasValue(inputone.longTermCapitalGains.value) &&
+                //  !hasValue(inputone.longTermCapitalGains.value) &&
                 "This field is required"
               }
               inputProps={{ min: 0 }}
