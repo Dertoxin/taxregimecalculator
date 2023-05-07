@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Form2 from "./Form2";
-export default function MediaCard({ handleChangeTwo, inputtwo }) {
+export default function MediaCard({ handleChangeTwo, inputtwo,activeStep,isButtonDisabled  }) {
   return (
     <Card
       sx={{ maxWidth: 1, border: "1px solid black", color: "black",  backgroundColor: "lavender",margin: 1 }}
@@ -19,7 +19,7 @@ export default function MediaCard({ handleChangeTwo, inputtwo }) {
           Enter the followings details for the entire year (You may refer to
           your salary slip or offer letter)
         </Typography>
-        <Form2 handleChangeTwo={handleChangeTwo} inputtwo ={inputtwo}></Form2>
+        <Form2 handleChangeTwo={handleChangeTwo} inputtwo ={inputtwo} activeStep={activeStep} isButtonDisabled={isButtonDisabled} ></Form2>
       </CardContent>
     </Card>
   );

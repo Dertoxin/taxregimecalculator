@@ -14,7 +14,7 @@ import Output from "./Output";
 import { useState,useEffect  } from "react";
 export default function VerticalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(1);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   
   const [taxregime, setTaxregime] = React.useState();
 
@@ -22,7 +22,7 @@ export default function VerticalLinearStepper() {
     ctc: { value: "", isRequired: false },
     basic: { value: "", isRequired: false },
     hra: { value: "", isRequired: false },
-    specialAllowance: { value: "", isRequired: false },
+    specialAllowance: { value: "", isRequired: false }, //hh
     otherAllowance: { value: "", isRequired: false },
     otherComponent: { value: "", isRequired: false },
     epfself: { value: "", isRequired: false },
@@ -33,20 +33,20 @@ export default function VerticalLinearStepper() {
   });
 
   const [inputtwo, setInputsTwo] = useState({
-    isRentedAccommodation: { value: false, isRequired: false },
+    isRentedAccommodation: { value: "", isRequired: true },
     totalHouseRentPaid: { value: "", isRequired: false },
     isHomeLoan: { value:"" , isRequired: false },
     homeLoanPrincipal: { value: "", isRequired: false },
     homeLoanInterest: { value: "", isRequired: false },
-    isHomeLoanAndRent: { value: false, isRequired: false },
-    isSameCity: { value: false, isRequired: false },
+    isHomeLoanAndRent: { value: "" , isRequired: false },
+    isSameCity: { value: "" , isRequired: false },
     taxSavingsInvestments: { value: "", isRequired: false },
     personalNpsContribution: { value: "", isRequired: false },
     isEmployerNpsContribution: { value: false, isRequired: false },
     employerNpsContribution: { value: "", isRequired: false },
     healthInsuranceSelf: { value:"", isRequired: false },
-    isHealthInsuranceParents: { value: false, isRequired: false },
-    isHealthInsuranceParentsAbove60: { value: false, isRequired: false },
+    isHealthInsuranceParents: { value: "", isRequired: false },
+    isHealthInsuranceParentsAbove60: { value: "", isRequired: false },
     healthInsuranceParentsContributionBelow60: { value: "", isRequired: false },
     healthInsuranceParentsContributionAbove60: { value: "", isRequired: false },
     medicalTestSelf: { value: "", isRequired: false },
@@ -73,36 +73,9 @@ export default function VerticalLinearStepper() {
   };
 
 
-  const areAllRequiredFieldsFilled = (inputObj) => {
-    for (const [key, value] of Object.entries(inputObj)) {
-      if (value.isRequired && !value.value) {
-        return false;
-      }
-    }
-    return true;
-  };
 
-  useEffect(() => {
-    if (activeStep === 0) {
-      setIsButtonDisabled(taxregime === "");
-      return;
-    }
 
-    let inputToCheck;
-    if (activeStep === 1) {
-      inputToCheck = inputone;
-    } else if (activeStep === 2) {
-      inputToCheck = inputtwo;
-    } else {
-      setIsButtonDisabled(false);
-      return;
-    }
 
-    const isFilled = areAllRequiredFieldsFilled(inputToCheck);
-    setIsButtonDisabled(!isFilled);
-  }, [inputone, inputtwo, activeStep, taxregime]);
-
- 
 
 
 
@@ -112,7 +85,7 @@ export default function VerticalLinearStepper() {
       label: "Select Tax Regime",
       description: `A tax regime refers to a collection of legal frameworks that dictate how taxes are assessed and calculated within a particular jurisdiction.`,
       component: Taxregime,
-      props: { taxregime, setTaxregime },
+      props: { taxregime},
     },
     {
       order: 2,
@@ -150,13 +123,13 @@ export default function VerticalLinearStepper() {
 
   const resetInputs = () => {
     setInputsone({
-      ctc: { value: "", isRequired: true },
-      basic: { value: "", isRequired: true },
-      hra: { value: "", isRequired: true },
+      ctc: { value: "", isRequired: false },
+      basic: { value: "", isRequired: false },
+      hra: { value: "", isRequired: false },
       specialAllowance: { value: "", isRequired: false },
       otherAllowance: { value: "", isRequired: false },
       otherComponent: { value: "", isRequired: false },
-      epf: { value: "", isRequired: true },
+      epf: { value: "", isRequired: false },
       bonus: { value: "", isRequired: false },
       shortTermCapitalGains: { value: "", isRequired: false },
       longTermCapitalGains: { value: "", isRequired: false },

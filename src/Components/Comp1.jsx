@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Button";
 import TextField from "@mui/material/Button";
 import Form1 from "./Form1";
-export default function Comp1({ handleChangeone, inputone }) {
+export default function Comp1({ handleChangeone, inputone}) {
   return (
     <Card
       sx={{
@@ -23,7 +23,6 @@ export default function Comp1({ handleChangeone, inputone }) {
         <Typography gutterBottom variant="h5" component="div">
           Sources of Income
         </Typography>
-        <Typography>CTC: {inputone.ctc.value}</Typography>
         <Typography variant="body1" sx={{ color: "black" }}>
           Enter the followings details for the entire year (You may refer to
           your salary slip or offer letter)

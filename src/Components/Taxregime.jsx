@@ -10,7 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Box,InputLabel } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 
-const Taxregime = ({ taxregime, setTaxregime }) => {
+const Taxregime = ({ taxregime, setTaxregime}) => {
   const [selecttaxreg, settaxreg] = useState("");
   const handleChange = (event) => {
     setTaxregime(event.target.value);
@@ -28,6 +28,8 @@ const Taxregime = ({ taxregime, setTaxregime }) => {
       }}
     >
       <CardContent>
+        <Typography>
+        </Typography>
         <Typography gutterBottom variant="h5" component="div">
           Select your Tax Regime for the year
         </Typography>
@@ -68,7 +70,7 @@ const Taxregime = ({ taxregime, setTaxregime }) => {
 
         <FormControl sx={{ m: 1, minWidth: 0.5, color: "Black" }}>
           <InputLabel id="Tax-regime-selecter-label">
-            Select tax regime
+            Select tax regime 
           </InputLabel>
           <Select
             labelId="Tax-regime-selecter-label"
@@ -85,7 +87,7 @@ const Taxregime = ({ taxregime, setTaxregime }) => {
         </FormControl>
         <Box sx={{ margin: 1 }}>
           <Typography sx={{ color: "Black", fontSize: 30 }}>
-            Selected Tax Regime: {taxregime}
+            Selected Tax Regime: {selecttaxreg}
           </Typography>
         </Box>
       </CardContent>

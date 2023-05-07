@@ -20,7 +20,7 @@ function Output({ taxregime, inputone, inputtwo }) {
       <Card
         sx={{
           maxWidth: 1,
-          height: 400,
+          height: 800,
           color: "black",
           border: 1,
           margin: 1,
