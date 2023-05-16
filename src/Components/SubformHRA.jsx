@@ -13,11 +13,17 @@ import {
 import { styled } from "@mui/system";
 
 const SubformHRA = ({ handleChangeTwo, inputtwo,disabled = false }) => {
+
+
+
+
+
   return (
     <Box>
       <Grid item xs={12}>
         <Typography variant="body1" sx={{ color: "black" }}>
           Do you have a Home loan ? 
+          {inputtwo.isHomeLoan.isRequired}
         </Typography>
         <FormControl sx={{ m: 1, minWidth: 80 }}>
           <Select
@@ -39,12 +45,16 @@ const SubformHRA = ({ handleChangeTwo, inputtwo,disabled = false }) => {
             <MenuItem value="Yes">Yes</MenuItem>
             <MenuItem value="No">No</MenuItem>
           </Select>
+
+         
         </FormControl>
       </Grid>
 
       <Grid item xs={12}>
         <Typography variant="body1" sx={{ color: "black" }}>
           Do you have a home loan and are still staying on rent?
+
+          {inputtwo.isHomeLoanAndRent.isDisabled}
         </Typography>
         <FormControl sx={{ m: 1, minWidth: 80 }}>
           <Select
@@ -52,8 +62,8 @@ const SubformHRA = ({ handleChangeTwo, inputtwo,disabled = false }) => {
             label=""
             onChange={handleChangeTwo}
             name="isHomeLoanAndRent"
-            value={disabled ? "" : inputtwo.isHomeLoanAndRent.value}
-            disabled={disabled || inputtwo.isHomeLoan.value !== "Yes"}
+            value={ inputtwo.isHomeLoan.value !== "Yes" ? "" : inputtwo.isHomeLoanAndRent.value}
+            disabled={inputtwo.isHomeLoan.value !== "Yes"}
              error={
               inputtwo.isHomeLoan.value==="Yes" && inputtwo.isHomeLoanAndRent.value === ""
             }
@@ -62,18 +72,19 @@ const SubformHRA = ({ handleChangeTwo, inputtwo,disabled = false }) => {
                 ? "This field is required"
                 : null
             }
-          
           >
             <MenuItem value="Yes">Yes</MenuItem>
             <MenuItem value="No">No</MenuItem>
           </Select>
         </FormControl>
+        <Typography>{inputtwo.isHomeLoanAndRent.isDisabled}</Typography>
       </Grid>
 
       <Grid item xs={12}>
         <Typography variant="body1" sx={{ color: "black" }}>
           Your rented house and house against which loan is taken in the same
           city?
+       
         </Typography>
         <FormControl sx={{ m: 1, minWidth: 80 }}>
           <Select
@@ -82,7 +93,7 @@ const SubformHRA = ({ handleChangeTwo, inputtwo,disabled = false }) => {
             value={inputtwo.isSameCity.value}
             onChange={handleChangeTwo}
             name="isSameCity"
-            disabled={inputtwo.isHomeLoan.value==="No" || inputtwo.isHomeLoanAndRent.value==="No"}
+            disabled={inputtwo.isHomeLoan.value !== "Yes"  || inputtwo.isHomeLoanAndRent.value!=="Yes"}
              error={
               inputtwo.isHomeLoanAndRent.value==="Yes" && inputtwo.isHomeLoanAndRent.value === ""
             }

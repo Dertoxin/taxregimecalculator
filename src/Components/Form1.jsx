@@ -115,7 +115,7 @@ function Form1({ handleChangeone, inputone }) {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="body1" sx={{ color: "black" }}>
-              Enter the  Other allowances in your CTC
+              Enter the Other allowances in your CTC
             </Typography>
             <TextField
               type="number"
@@ -155,68 +155,71 @@ function Form1({ handleChangeone, inputone }) {
               }
               inputProps={{ min: 0 }}
             />
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="body1" sx={{ color: "black" }}>
-              Enter the 'EPF' Component of your CTC contributed by yourself
-            </Typography>
-            <TextField
-              type="number"
-              onChange={handleChangeone}
-              name="epf"
-              value={inputone.epfself.value}
-              placeholder="EPF"
-              sx={{ marginTop: 1, width: "50%" }}
-              error={!inputone.epfself.value}
-              helperText={
-                (inputone.epfself.value === "" && "This field is required") ||
-                (inputone.epfself.value < 0 && "Value cannot be less than 0")
-              }
-              inputProps={{ min: 0 }}
-            />
-          </Grid>
 
-          <Grid item xs={12}>
-            <Typography variant="body1" sx={{ color: "black" }}>
-              Enter the 'Employer Provident Fund (EPF) ' Component of your CTC
-              contributed by your company/employer
-            </Typography>
-            <TextField
-              type="number"
-              onChange={handleChangeone}
-              name="epf"
-              value={inputone.epfcompany.value}
-              placeholder="EPF"
-              sx={{ marginTop: 1, width: "50%" }}
-              error={!inputone.epfcompany.value}
-              helperText={
-                (inputone.epfcompany.value === "" &&
-                  "This field is required") ||
-                (inputone.epfcompany.value < 0 && "Value cannot be less than 0")
-              }
-              inputProps={{ min: 0 }}
-            />
-          </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body1" sx={{ color: "black" }}>
+                Enter income from other sources such as interest earned on bank
+                or savings bank deposits
+              </Typography>
+              <TextField
+                type="number"
+                onChange={handleChangeone}
+                name="incomeothersource"
+                value={inputone.incomeothersource.value}
+                placeholder="Income other sources"
+                sx={{ marginTop: 1, width: "50%" }}
+                error={!inputone.incomeothersource.value}
+                helperText={
+                  (inputone.incomeothersource.value === "" &&
+                    "This field is required") ||
+                  (inputone.incomeothersource.value < 0 &&
+                    "Value cannot be less than 0")
+                }
+                inputProps={{ min: 0 }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body1" sx={{ color: "black" }}>
+                Enter the 'EPF' Component of your CTC contributed by yourself
+              </Typography>
+              <TextField
+                type="number"
+                onChange={handleChangeone}
+                name="epfself"
+                value={inputone.epfself.value}
+                placeholder="EPF"
+                sx={{ marginTop: 1, width: "50%" }}
+                error={!inputone.epfself.value}
+                helperText={
+                  (inputone.epfself.value === "" && "This field is required") ||
+                  (inputone.epfself.value < 0 && "Value cannot be less than 0")
+                }
+                inputProps={{ min: 0 }}
+              />
+            </Grid>
 
-          <Grid item xs={12}>
-            <Typography variant="body1" sx={{ color: "black" }}>
-              Enter income from other sources such as interest earned on bank or
-              savings bank deposits
-            </Typography>
-            <TextField
-              type="number"
-              onChange={handleChangeone}
-              name="epf"
-              value={inputone.epfself.value}
-              placeholder="Interestothersources"
-              sx={{ marginTop: 1, width: "50%" }}
-              error={!inputone.epfself.value}
-              helperText={
-                (inputone.epfself.value === "" && "This field is required") ||
-                (inputone.epfself.value < 0 && "Value cannot be less than 0")
-              }
-              inputProps={{ min: 0 }}
-            />
+            <Grid item xs={12}>
+              <Typography variant="body1" sx={{ color: "black" }}>
+                Enter the 'Employer Provident Fund (EPF) ' Component of your CTC
+                contributed by your company/employer
+              </Typography>
+              <TextField
+                type="number"
+                onChange={handleChangeone}
+                name="epfcompany"
+                value={inputone.epfcompany.value}
+                placeholder="EPF"
+                sx={{ marginTop: 1, width: "50%" }}
+                error={!inputone.epfcompany.value}
+                helperText={
+                  (inputone.epfcompany.value === "" &&
+                    "This field is required") ||
+                  (inputone.epfcompany.value < 0 &&
+                    "Value cannot be less than 0")
+                }
+                inputProps={{ min: 0 }}
+              />
+            </Grid>
           </Grid>
           <Grid item xs={12}>
             <Typography variant="body1" sx={{ color: "black" }}>

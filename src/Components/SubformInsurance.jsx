@@ -24,6 +24,7 @@ const SubformInsurance = ({ handleChangeTwo, inputtwo }) => {
         </Typography>
         <TextField type="number" sx={{ marginTop: 1, width: "50%" }} />
       </Grid>
+
       <Grid item xs={12}>
         <Typography variant="body1" sx={{ color: "black" }}>
           Are you paying health insurance premium for your parents?
@@ -57,16 +58,19 @@ const SubformInsurance = ({ handleChangeTwo, inputtwo }) => {
             label=""
             onChange={handleChangeTwo}
             name="isHealthInsuranceParentsAbove60"
-            value={inputtwo.isHealthInsuranceParentsAbove60.value}
-            disabled={inputtwo.isHealthInsuranceParents.value === "No"}
+            value={inputtwo.isHealthInsuranceParents.value !== "Yes" ? "" : inputtwo.isHealthInsuranceParentsAbove60.value
+            }
+            disabled={inputtwo.isHealthInsuranceParents.value !== "Yes"}
             error={ inputtwo.isHealthInsuranceParents.value=== "Yes" && !inputtwo.isHealthInsuranceParentsAbove60.value}
-          helperText={/*!payinsu && */ "This field is required"}
+          helperText={!inputtwo.isHealthInsuranceParentsAbove60.value &&  "This field is required"}
           >
             <MenuItem value="Yes">Yes</MenuItem>
             <MenuItem value="No">No</MenuItem>
           </Select>
         </FormControl>
       </Grid>
+
+
       <Grid item xs={12}>
         <Typography variant="body1" sx={{ color: "black" }}>
           Contribution to health insurance of parents (if they are below 60
@@ -75,8 +79,9 @@ const SubformInsurance = ({ handleChangeTwo, inputtwo }) => {
         <TextField
           type="number"
           sx={{ marginTop: 1, width: "50%" }}
-          value = {inputtwo.healthInsuranceParentsContributionBelow60.value}
-          disabled={inputtwo.isHealthInsuranceParentsAbove60.value === "Yes"}
+          name="healthInsuranceParentsContributionBelow60"
+          value = {inputtwo.isHealthInsuranceParents.value=== "Yes" && inputtwo.isHealthInsuranceParentsAbove60.value!== "No" ? "":  inputtwo.healthInsuranceParentsContributionBelow60.value}
+          disabled={inputtwo.isHealthInsuranceParentsAbove60.value !== "No"}
           required
           InputLabelProps={{ shrink: true }}
           error={ inputtwo.isHealthInsuranceParentsAbove60.value=== "No" && !inputtwo.healthInsuranceParentsContributionBelow60.value}
@@ -91,8 +96,9 @@ const SubformInsurance = ({ handleChangeTwo, inputtwo }) => {
         <TextField
           type="number"
           sx={{ marginTop: 1, width: "50%" }}
-          value = {inputtwo.healthInsuranceParentsContributionAbove60.value}
-          disabled={inputtwo.isHealthInsuranceParentsAbove60.value === "No"}
+          name = "healthInsuranceParentsContributionAbove60"
+          value = {inputtwo.isHealthInsuranceParents.value=== "Yes" && inputtwo.isHealthInsuranceParentsAbove60.value!== "Yes" ? "":  inputtwo.healthInsuranceParentsContributionAbove60.value}
+          disabled={inputtwo.isHealthInsuranceParentsAbove60.value !== "Yes"}
           required
           error={ inputtwo.isHealthInsuranceParentsAbove60.value=== "Yes" && !inputtwo.healthInsuranceParentsContributionAbove60.value}
           helperText={/*!payinsu && */ "This field is required"}

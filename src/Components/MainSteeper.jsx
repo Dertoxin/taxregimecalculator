@@ -12,46 +12,82 @@ import Comp2 from "./Comp2";
 import Taxregime from "./Taxregime";
 import Output from "./Output";
 import { useState, useEffect } from "react";
+import taxmain from "../Processor/taxcomputer";
 export default function VerticalLinearStepper() {
-  const [activeStep, setActiveStep] = React.useState(1);
+  const [activeStep, setActiveStep] = React.useState(0);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-
   const [taxregime, setTaxregime] = React.useState();
+  const [taxData, setTaxData] = useState(null);
+  
 
   const [inputone, setInputsone] = useState({
-    ctc: { value: "", isRequired: false },
-    basic: { value: "", isRequired: false },
-    hra: { value: "", isRequired: false },
-    specialAllowance: { value: "", isRequired: false },
-    otherAllowance: { value: "", isRequired: false },
-    otherComponent: { value: "", isRequired: false },
-    epfself: { value: "", isRequired: false },
-    epfcompany: { value: "", isRequired: false },
-    bonus: { value: "", isRequired: false },
-    shortTermCapitalGains: { value: "", isRequired: false },
-    longTermCapitalGains: { value: "", isRequired: false },
+    ctc: { value: "", isRequired: false, dataType: "number" } /* */,
+    basic: { value: "", isRequired: false, dataType: "number" } /* */,
+    hra: { value: "", isRequired: false, dataType: "number" } /* */,
+    specialAllowance: { value: "", isRequired: false, dataType: "number" },
+    otherAllowance: { value: "", isRequired: false, dataType: "number" },
+    otherComponent: { value: "", isRequired: false, dataType: "number" },
+    incomeothersource: { value: "", isRequired: false, dataType: "number" },
+    epfself: { value: "", isRequired: false, dataType: "number" } /* */,
+    epfcompany: { value: "", isRequired: false, dataType: "number" } /**/,
+    bonus: { value: "", isRequired: false, dataType: "number" },
+    shortTermCapitalGains: { value: "", isRequired: false, dataType: "number" },
+    longTermCapitalGains: { value: "", isRequired: false, dataType: "number" },
   });
 
   const [inputtwo, setInputsTwo] = useState({
-    isRentedAccommodation: { value: "", isRequired: true },
-    totalHouseRentPaid: { value: "", isRequired: false },
-    isHomeLoan: { value: "", isRequired: false },
-    homeLoanPrincipal: { value: "", isRequired: false },
-    homeLoanInterest: { value: "", isRequired: false },
-    isHomeLoanAndRent: { value: "", isRequired: false },
-    isSameCity: { value: "", isRequired: false },
-    taxSavingsInvestments: { value: "", isRequired: false },
-    personalNpsContribution: { value: "", isRequired: false },
-    isEmployerNpsContribution: { value: false, isRequired: false },
-    employerNpsContribution: { value: "", isRequired: false },
-    healthInsuranceSelf: { value: "", isRequired: false },
-    isHealthInsuranceParents: { value: "", isRequired: false },
-    isHealthInsuranceParentsAbove60: { value: "", isRequired: false },
-    healthInsuranceParentsContributionBelow60: { value: "", isRequired: false },
-    healthInsuranceParentsContributionAbove60: { value: "", isRequired: false },
-    medicalTestSelf: { value: "", isRequired: false },
-    medicalTestParents: { value: "", isRequired: false },
+    isRentedAccommodation: {
+      value: "",
+      isRequired: false,
+      dataType: "boolean",
+    },
+    totalHouseRentPaid: { value: "", isRequired: false, dataType: "number" },
+    isHomeLoan: { value: "", isRequired: false, dataType: "boolean" },
+    homeLoanPrincipal: { value: "", isRequired: false, dataType: "number" },
+    homeLoanInterest: { value: "", isRequired: false, dataType: "number" },
+    isHomeLoanAndRent: { value: "", isRequired: false, dataType: "boolean" },
+    isSameCity: { value: "", isRequired: false, dataType: "boolean" },
+    taxSavingsInvestments: { value: "", isRequired: false, dataType: "number" },
+    personalNpsContribution: {
+      value: "",
+      isRequired: false,
+      dataType: "number",
+    },
+    isEmployerNpsContribution: {
+      value: "",
+      isRequired: false,
+      dataType: "boolean",
+    },
+    employerNpsContribution: {
+      value: "",
+      isRequired: false,
+      dataType: "number",
+    },
+    healthInsuranceSelf: { value: "", isRequired: false, dataType: "number" },
+    isHealthInsuranceParents: {
+      value: "",
+      isRequired: false,
+      dataType: "boolean",
+    },
+    isHealthInsuranceParentsAbove60: {
+      value: "",
+      isRequired: false,
+      dataType: "boolean",
+    },
+    healthInsuranceParentsContributionBelow60: {
+      value: "",
+      isRequired: false,
+      dataType: "number",
+    },
+    healthInsuranceParentsContributionAbove60: {
+      value: "",
+      isRequired: false,
+      dataType: "number",
+    },
+    medicalTestSelf: { value: "", isRequired: false, dataType: "number" },
+    medicalTestParents: { value: "", isRequired: false, dataType: "number" },
   });
+
   {
   }
   const handleChangeone = (event) => {
@@ -77,7 +113,7 @@ export default function VerticalLinearStepper() {
       label: "Select Tax Regime",
       description: `A tax regime refers to a collection of legal frameworks that dictate how taxes are assessed and calculated within a particular jurisdiction.`,
       component: Taxregime,
-      props: { taxregime,setTaxregime },
+      props: { taxregime, setTaxregime },
     },
     {
       order: 2,
@@ -101,12 +137,23 @@ export default function VerticalLinearStepper() {
       label: "Compute Output",
       description: `Our website would provide you your tax liablity under the Old income tax regime and New income tax regime in the output below. You can get an estiamte of the tax payable under each regime and accordingly take a decision of which income tax regime do you need to choose while filing your income tax returns.`,
       component: Box,
-      props: { taxregime, inputone, inputtwo },
+      props: { taxregime,taxData},
     },
   ];
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (activeStep === 3) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      const convertedInputone = convertInputs(inputone);
+      const convertedInputtwo = convertInputs(inputtwo);
+      const output = taxmain (taxregime,convertedInputone,convertedInputtwo)
+      setTaxData(output)
+      const objectString = JSON.stringify(output);
+      alert(objectString);
+
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
   };
 
   const handleBack = () => {
@@ -130,13 +177,98 @@ export default function VerticalLinearStepper() {
   };
 
   const handleReset = () => {
-    setActiveStep(0);
-    resetInputs();
+    setActiveStep(2);
+    /*resetInputs();*/
   };
 
   const handleCurrent = (val) => {
     setActiveStep(val);
   };
+
+  const convertInputs = (obj) => {
+    const newObj = {};
+    for (const [key, value] of Object.entries(obj)) {
+      if (value.dataType === "number") {
+        newObj[key] = value.value === "" ? 0 : Number(value.value);
+        console.log(typeof newObj[key]);
+      } else if (value.dataType === "boolean") {
+        newObj[key] =
+          value.value === "" ? false : value.value === "Yes" ? true : false;
+      } else {
+        newObj[key] = value.value;
+      }
+    }
+    return newObj;
+  };
+
+  const handleCalculate = (inputone, inputtwo, taxregime) => {
+    alert("calculate");
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  useEffect(() => {
+    if (activeStep === 0) {
+      setIsButtonDisabled(!taxregime);
+    } else if (activeStep === 1) {
+      const isRequiredFieldsFilled = Object.values(inputone).every(
+        (field) => field.isRequired === false || field.value !== ""
+      );
+      setIsButtonDisabled(!isRequiredFieldsFilled);
+    } else if (activeStep === 2) {
+      const isRequiredFieldsFilled = Object.values(inputtwo).every(
+        (field) => field.isRequired === false || field.value !== ""
+      );
+      setIsButtonDisabled(!isRequiredFieldsFilled);
+    }
+  }, [activeStep, inputone, inputtwo, taxregime]);
+
+  useEffect(() => {
+    setInputsTwo((prevState) => ({
+      ...prevState,
+
+      isHomeLoanAndRent: {
+        ...prevState.isHomeLoanAndRent,
+        isRequired: inputtwo.isHomeLoan.value === "Yes" ? true : false,
+      },
+      isSameCity: {
+        ...prevState.isSameCity,
+        isRequired:
+          prevState.isHomeLoanAndRent.isRequired === true &&
+          inputtwo.isHomeLoanAndRent.value === "Yes"
+            ? true
+            : false,
+      },
+      homeLoanPrincipal: {
+        ...prevState.homeLoanPrincipal,
+        isRequired: inputtwo.isHomeLoan.value === "Yes" ? true : false,
+      },
+      homeLoanInterest: {
+        ...prevState.homeLoanInterest,
+        isRequired: inputtwo.isHomeLoan.value === "Yes" ? true : false,
+      },
+      totalHouseRentPaid: {
+        ...prevState.totalHouseRentPaid,
+        isRequired:
+          inputtwo.isRentedAccommodation.value === "Yes" ? true : false,
+      },
+
+      employerNpsContribution: {
+        ...prevState.employerNpsContribution,
+        isRequired:
+          inputtwo.isEmployerNpsContribution.value === "Yes" ? true : false,
+      },
+    }));
+  }, [
+    inputtwo.isHomeLoan.value,
+    inputtwo.isHomeLoanAndRent.value,
+    inputtwo.isSameCity.value,
+    inputtwo.homeLoanPrincipal.value,
+    inputtwo.homeLoanInterest.value,
+    inputtwo.isRentedAccommodation.value,
+    inputtwo.totalHouseRentPaid.value,
+    inputtwo.isEmployerNpsContribution.value,
+    inputtwo.employerNpsContribution.value,
+  ]);
 
   return (
     <Box sx={{ maxWidth: 1 }}>

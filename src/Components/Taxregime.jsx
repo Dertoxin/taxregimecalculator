@@ -11,10 +11,10 @@ import { Box,InputLabel } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 
 const Taxregime = ({ taxregime, setTaxregime}) => {
-  const [selecttaxreg, settaxreg] = useState("");
+
   const handleChange = (event) => {
     setTaxregime(event.target.value);
-    settaxreg(event.target.value);
+
   };
 
   return (
@@ -75,7 +75,7 @@ const Taxregime = ({ taxregime, setTaxregime}) => {
           <Select
             labelId="Tax-regime-selecter-label"
             onChange={handleChange}
-            value={selecttaxreg}
+            value={taxregime}
           >
             <MenuItem value={"FY 2022-2023 (01/04/2022 to 31/03/2023)"}>
               Financial year 2022-2023 (1 April 2022 to 31 March 2023)
@@ -87,7 +87,7 @@ const Taxregime = ({ taxregime, setTaxregime}) => {
         </FormControl>
         <Box sx={{ margin: 1 }}>
           <Typography sx={{ color: "Black", fontSize: 30 }}>
-            Selected Tax Regime: {selecttaxreg}
+            Selected Tax Regime: {taxregime}
           </Typography>
         </Box>
       </CardContent>

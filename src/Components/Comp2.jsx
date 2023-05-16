@@ -19,7 +19,7 @@ export default function MediaCard({ handleChangeTwo, inputtwo,activeStep,isButto
           Enter the followings details for the entire year (You may refer to
           your salary slip or offer letter)
         </Typography>
-        <Form2 handleChangeTwo={handleChangeTwo} inputtwo ={inputtwo} activeStep={activeStep} isButtonDisabled={isButtonDisabled} ></Form2>
+        <Form2 handleChangeTwo={handleChangeTwo} inputtwo ={inputtwo}></Form2>
       </CardContent>
     </Card>
   );

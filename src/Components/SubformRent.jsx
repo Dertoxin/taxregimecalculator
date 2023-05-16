@@ -28,8 +28,8 @@ const SubformRent = ({ handleChangeTwo, inputtwo }) => {
             onChange={handleChangeTwo}
             value={inputtwo.isRentedAccommodation.value}
           >
-            <MenuItem value={true}>Yes</MenuItem>
-            <MenuItem value={false}>No</MenuItem>
+            <MenuItem value={"Yes"}>Yes</MenuItem>
+            <MenuItem value={"No"}>No</MenuItem>
           </Select>
         </FormControl>
       </Grid>
@@ -39,7 +39,7 @@ const SubformRent = ({ handleChangeTwo, inputtwo }) => {
         </Typography>
         <TextField
           Required
-          disabled={inputtwo.isRentedAccommodation.value !== true}
+          disabled={inputtwo.isRentedAccommodation.value !== "Yes"}
           type="number"
           onChange={handleChangeTwo}
           name="totalHouseRentPaid"
