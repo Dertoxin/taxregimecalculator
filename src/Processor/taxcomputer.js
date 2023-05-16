@@ -6,10 +6,13 @@ import newdeduct from "./newregime";
 
 const oldregimeoutput = (incomebeforededuction, inputone, inputtwo) => {
   const deductionoldregime = oldregimedeductions(inputone, inputtwo);
+  console.log("totaldeduction old regime : ",deductionoldregime)
   const outputoldtaxregimetaxableincome =
     incomebeforededuction - deductionoldregime;
-  const outputoldtaxregime = oldregimetax(outputoldtaxregimetaxableincome);
 
+    console.log("income - deduction old regime  : ",outputoldtaxregimetaxableincome)
+  const outputoldtaxregime = oldregimetax(outputoldtaxregimetaxableincome);
+  console.log("after tax calculation",outputoldtaxregime)
   return outputoldtaxregime;
 };
 
@@ -29,7 +32,7 @@ const taxmain = (taxregime, inputone, inputtwo) => {
     inputone.epfcompany +
     inputone.bonus +
     inputone.shortTermCapitalGains;
-
+console.log("income before deduciton : ",incomebeforededuction)
   const surcharge =
     inputone.basic +
     inputone.hra +
@@ -41,8 +44,11 @@ const taxmain = (taxregime, inputone, inputtwo) => {
     inputone.bonus +
     inputone.shortTermCapitalGains +
     inputone.longTermCapitalGains;
+    console.log("surcharge : ",surcharge)
 
   const longTermCapitalGains = inputone.longTermCapitalGains;
+console.log("longTermCapitalGains : ",longTermCapitalGains)
+
 
   const outputoldtaxregime = oldregimeoutput(
     surcharge,
@@ -58,29 +64,41 @@ const taxmain = (taxregime, inputone, inputtwo) => {
       surcharge,
       incomebeforededuction,
       longTermCapitalGains
+
     );
+
+    console.log("newregimeoutputpostdeductionandtaxslab FY23 : ",outputnewtaxregime)
     //newtaxregime24
   } else if (taxregime === "FY2023-2024 (01/04/2023 to 31/03/2024)") {
     deductionnewregime = newdeduct(inputone);
+    console.log("newregimededuction FY24 : ",outputnewtaxregime)
     outputnewtaxregimetaxableincome =
       incomebeforededuction - deductionnewregime;
+
+      console.log("incomeafterdeductionnewregime FY24 : ",outputnewtaxregimetaxableincome)
     outputnewtaxregime = newtaxslabprocessor24(
       surcharge,
       outputnewtaxregimetaxableincome,
       longTermCapitalGains
     );
+
+    console.log("taxslabprocessing FY24 : ",outputnewtaxregimetaxableincome)
   }
 
   const monthlyposttaxold =
-    inputone.ctc / 12 -
-    outputoldtaxregime / 12 -
+    inputone.ctc/ 12 -
+    outputoldtaxregime/ 12 -
     inputone.epfcompany / 12 -
     inputtwo.employerNpsContribution / 12;
+
+    console.log("monthlyposttaxold : ",monthlyposttaxold)
   const monthlyposttaxnew =
     inputone.ctc / 12 -
     outputnewtaxregime / 12 -
     inputone.epfcompany / 12 -
     inputtwo.employerNpsContribution / 12;
+    console.log("monthlyposttaxnew : ",monthlyposttaxnew)
+
 
   const result = {};
   result.outputnewtaxregime = Math.floor(outputnewtaxregime);

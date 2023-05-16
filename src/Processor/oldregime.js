@@ -4,6 +4,8 @@
 const calculateOutput1 = (basic, hra, totalHouseRentPaid) => {
     const hraExemption = Math.min(hra - (0.1 * basic), 0.5 * basic);
     return Math.min(hraExemption, totalHouseRentPaid);
+
+    
   }
   
   const calculateOutput2 = (taxSavingsInvestments, homeLoanPrincipal, epfself, isSameCity) => {
@@ -46,6 +48,17 @@ const calculateOutput1 = (basic, hra, totalHouseRentPaid) => {
     const output6 = calculateOutput6(inputtwo.healthInsuranceSelf, inputtwo.medicalTestSelf);
     const output7 = calculateOutput7(inputtwo.healthInsuranceParentsContributionAbove60, inputtwo.medicalTestParents, inputtwo.isHealthInsuranceParentsAbove60, inputtwo.healthInsuranceParentsContributionBelow60);
     return output1 + output2 + output3 + output4 + output5 + output6 + output7 + inputone.epfcompany;
+
+
+    console.log("outpu1 : ",output1)
+    console.log("outpu2 : ",output2)
+    console.log("output3 : ",output3)
+    console.log("output4 : ",output4)
+    console.log("output5 : ",output5)
+    console.log("output6 : ",output6)
+    console.log("output7 : ",output7)
+    console.log("sun:",output1 + output2 + output3 + output4 + output5 + output6 + output7 + inputone.epfcompany)
+
   }
   
   
