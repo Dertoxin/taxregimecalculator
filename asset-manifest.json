@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/Dertoxin/taxregimecalculator.git/static/css/main.31d6cfe0.css",
+    "main.js": "/Dertoxin/taxregimecalculator.git/static/js/main.e23d079d.js",
+    "index.html": "/Dertoxin/taxregimecalculator.git/index.html",
+    "main.e23d079d.js.map": "/Dertoxin/taxregimecalculator.git/static/js/main.e23d079d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.e23d079d.js"
+  ]
+}
